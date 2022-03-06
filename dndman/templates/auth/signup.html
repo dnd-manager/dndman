@@ -1,0 +1,14 @@
+{% extends 'auth/base.html' %}
+{% block content %}
+    <h1 class="title">Sign Up</h1>
+    <form action="#" method="post">
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username" placeholder="Enter Your Username"><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password" placeholder="Enter Your Password"><br>
+        <label for="password-confirmation">Password x2</label><br>
+        <input type="password" name="password-confirmation" id="password-confirmation" placeholder="Enter Your Password Again"><br>
+
+        <input type="submit" value="Sign Up" class="button">
+    </form>
+{% endblock %}

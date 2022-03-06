@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block navbar %}
+    <a href="{{url_for('player.player_view')}}" class="button navbar-item">Player View</a>
+    <a href="{{url_for('dm.dm_view')}}" class="button navbar-item">DM View</a>
+{% endblock %}
+
+{% block content %}
+    <main id="profile">
+        <h1 class="title">
+            {{username}}'s Profile
+        </h1>
+
+        <section id="characters">
+            <div class="section-header">
+                <h2 class="subtitle">Characters</h2> 
+                <a href="{{url_for('player.character_creator')}}" class="button">Character Creator</a>
+            </div>
+            <div class="section-content">
+                
+            </div>
+        </section>
+
+        <a href="{{url_for('auth.logout')}}" class="button">Logout</a>
+    </main>
+{% endblock %}

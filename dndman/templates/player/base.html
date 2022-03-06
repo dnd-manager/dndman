@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block navbar %}
+    <a href="{{url_for('player.dice_roll')}}" class="button navbar-item" title="Dice Roler">Dice Roller</a>
+    <a href="{{url_for('player.character_creator')}}" class="button navbar-item" title="Character Creator">Character Creator</a>
+{% endblock %}

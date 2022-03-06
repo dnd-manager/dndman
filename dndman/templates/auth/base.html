@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	    <meta charset="UTF-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	    <title>D&D Manager</title>
+	    <link rel="stylesheet" href="/static/styles/style.css" />
+		<link rel="icon" href="/static/resources/logo.svg"/>
+	</head>
+	<body id="auth">
+        <main>
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					<header class="flashes">
+						{% for message in messages %}
+							<p>{{ message }}</p>
+						{% endfor %}
+					</header>
+				{% endif %}
+			{% endwith %}
+
+            {% block content %}   
+            {% endblock %}
+        </main>
+    </body>
+</html>

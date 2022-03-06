@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+$font: 'Noto Sans', serif;
+$display-font: 'Rakkas', display, serif;
+
+$black-dark: #111;
+$black-mid: #222;
+$black-light: #333;
+
+$white-light: #EEE;
+$white-mid: #DDD;
+$white-dark: #CCC;
+
+$border-color: #5c0091;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0 50px;
+    background-color: $black-mid;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    color: $white-light;
+    font-weight: normal;
+    font-family: $font;
+}
+
+.button {
+    border: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    border-color: $border-color;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $white-light;
+    font-family: $font;
+    margin: 10px;
+    padding: 5px;
+    background-color: $black-dark;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: $display-font;
+    font-size: 40px;
+}
+
+.subtitle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    font-family: $font;
+    font-size: 25px;
+    font-weight: normal;
+}
+
+#navbar {
+    height: 100px;
+    padding: 0 50px;
+    margin: 0 -50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: $black-dark;
+
+    img {
+        height: 60px;
+        width: auto;
+    }
+
+    h1 {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        font-family: $display-font;
+        font-size: 40px;
+    }
+
+    #nav-left, #nav-right {
+        display: flex;
+    
+        .navbar-item{
+            &:first-child {
+                margin-left: 0;
+            }
+        
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+    
+    #nav-left .navbar-item {
+        margin-right: 10px;
+    }
+    
+    #nav-right .navbar-item {
+        margin-left: 10px;
+    }
+    
+    .button {
+        width: 140px;
+        height: 25px;
+        margin: 10px;
+        padding: 5px;
+    }
+}
+
+#home {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    background-color: $black-dark;
+
+    #home-logo {
+        width: 15%;
+        height: auto;
+        margin-top: -15%;
+        margin-bottom: 2%;
+    }
+    
+    .title {
+        font-family: $display-font;
+        font-size: 100px;
+        color: $white-light;
+    }
+    
+    .button {
+        width: 200px;
+        height: 30px;
+        margin: 10px;
+        padding: 5px;
+    }
+}
+
+.character-creator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    border-style: solid;
+
+    label {
+        font-family: $font;
+        font-size: 20px;
+        color: $white-light;
+        margin-top: 5px;
+        margin-bottom: -5px;
+    }
+
+    input {
+        margin-top: -5px;
+    }
+}
+
+#auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    main {
+        width: 300px;
+        height: 400px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        border: 5px;
+        border-style: solid;
+        border-radius: 10px;
+        border-color: $border-color;
+        background-color: $black-dark;
+
+        .title {
+            font-family: $display-font;
+            font-size: 50px;
+            color: $white-light;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        form {
+            label {
+                font-family: $font;
+                font-size: 20px;
+                color: $white-light;
+                margin-bottom: 10px;
+            }
+
+            input {
+                font-family: $font;
+                text-overflow: ellipsis;
+                margin-bottom: 10px;
+            }
+
+            input[type="text"], input[type="password"] {
+                background: $white-light;
+                color: $black-dark;
+
+                border: none;
+                border-radius: 3px;
+
+                padding: 5px;
+            }
+
+            input[type="submit"] {
+                font-family: $font;
+                
+                width: 100%;
+                height: auto;
+
+                margin: 0px;
+                margin-top: 25px;
+            }
+        }
+    }
+}
+
+#profile {
+    .title {
+        margin-top: 20px;
+    }
+
+    .title h2 {
+        margin-top: -10px;
+    }
+
+    .button {
+        width: 140px;
+        height: auto;
+        margin-left: 0px;
+        text-align: center;
+    }
+
+    .section-header * {
+        display: inline-block;
+        margin-right: 10px;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+
+    .section-content {
+        width: 100%;
+        height: 200px;
+        
+        border: solid;
+        border-width: 2px;
+        border-radius: 5px;
+        border-color: $border-color;
+    }
+}
