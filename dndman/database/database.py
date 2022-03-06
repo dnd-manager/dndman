@@ -83,14 +83,16 @@ class Database:
         }
 
     def deserialize(self, data):
-        self.__users = self.deserialize_users(data["users"])
-        pass
+        try:
+            self.__users = Database.deserialize_users(data["users"])
+        except KeyError:
+            pass
 
     def serialize_users(self) -> List[Dict[str, str]]:
         return list(map(lambda user: user.serialize(), self.__users));
 
     @staticmethod
-    def deserialize_users(self, users) -> List[User]:
+    def deserialize_users(users) -> List[User]:
         return list(map(lambda user: User.deserialize(user), users));
 
 database: Database = Database()
