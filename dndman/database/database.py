@@ -46,13 +46,11 @@ class Database:
     def __init__(self):
         if not USERS_PATH.exists():
             with open(USERS_PATH, "w") as f:
-                json.dump({}, f)
+                json.dump({"users": []}, f)
 
         with open(USERS_PATH) as f:
             data: Dict[str, List[Any]] = json.load(f)
             self.deserialize(data)
-
-        print(self.__users)
 
     def has_user(self, username: str) -> bool:
         try:
