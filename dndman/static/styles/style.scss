@@ -228,13 +228,23 @@ p, h1, h2, h3, h4, h5, h6 {
 
             input[type="submit"] {
                 font-family: $font;
-                
+                font-size: medium;
+
                 width: 100%;
                 height: auto;
-
+    
                 margin: 0px;
                 margin-top: 25px;
             }
+        }
+
+        a[class="button"] {
+            font-family: $font;
+            
+            width: 125px;
+            height: auto;
+            
+            margin-top: 50pxs;
         }
     }
 }

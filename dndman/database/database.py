@@ -9,7 +9,8 @@ import json
 from dndman.logger import logger
 import logging
 
-USERS_PATH = Path("./database/users.json")
+USERS_PATH = Path("./database/database.json")
+PFP_PATH = "/static/resources/users/"
 
 logger.setLevel(logging.DEBUG)
 
@@ -22,22 +23,24 @@ class UserNotFoundException(Exception):
 
 class User(flask_login.UserMixin):
     password: str
+    pfp_path: str = PFP_PATH + "unknown_user.svg"
 
     def __init__(self):
         super().__init__()
 
     def serialize(self) -> Dict[str, str]:
-        return {"username": self.id, "password": self.password}
+        return {"username": self.id, "password": self.password, "pfp": self.pfp_path}
 
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> User:
         user = User()
         user.id = inp["username"]
         user.password = inp["password"]
+        user.pfp_path = inp["pfp"]
         return user
 
     def __repr__(self) -> str:
-        return f"User(id={self.id}, password={self.password})"
+        return f"User(id={self.id}, password={self.password}, pfp={self.pfp_path})"
 
 
 class Database:

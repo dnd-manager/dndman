@@ -183,10 +183,17 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 #auth main form input[type=submit] {
   font-family: "Noto Sans", serif;
+  font-size: medium;
   width: 100%;
   height: auto;
   margin: 0px;
   margin-top: 25px;
+}
+#auth main a[class=button] {
+  font-family: "Noto Sans", serif;
+  width: 125px;
+  height: auto;
+  margin-top: 50pxs;
 }
 
 #profile .title {

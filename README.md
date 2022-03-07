@@ -24,6 +24,7 @@ poetry shell
 ## Running
 
 Running the development server:
+Note: Every time you open a new terminal you must run `poetry shell` again. Or else `invoke` will not work.
 
 ```bash
 invoke debug
