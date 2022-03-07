@@ -10,7 +10,7 @@ from dndman.logger import logger
 import logging
 
 USERS_PATH = Path("./database/database.json")
-PFP_PATH = "/static/resources/users/"
+PFP_PATH = Path("/static/resources/users/")
 
 logger.setLevel(logging.DEBUG)
 
@@ -23,7 +23,7 @@ class UserNotFoundException(Exception):
 
 class User(flask_login.UserMixin):
     password: str
-    pfp_path: str = PFP_PATH + "unknown_user.svg"
+    pfp_path: str = PFP_PATH / Path("unknown_user.svg")
 
     def __init__(self):
         super().__init__()
@@ -48,6 +48,7 @@ class Database:
 
     def __init__(self):
         if not USERS_PATH.exists():
+            USERS_PATH.parent.mkdir(exist_ok=True)
             with open(USERS_PATH, "w") as f:
                 json.dump({"users": []}, f)
 
