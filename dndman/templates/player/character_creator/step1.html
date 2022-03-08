@@ -1,14 +1,12 @@
 {% extends 'player/base.html' %}
 {% block content %}
-    <form class="character-creator">
-        {% for text in 
-            [
-                "Player Name:",
-                "Character Name:"
-            ]
-        %}
-            <label for="{{ text|lower  | replace(":", "") | replace(" ", "-")}}">{{text}}</label><br>
-            <input type="text" id="{{ text|lower  | replace(":", "") | replace(" ", "-")}}"><br>
-        {% endfor %}
+        <label for="player-name">Player Name:</label><br>
+        <input type="text" id="player-name" name="player-name"><br>
+
+        <label for="character-name">Character Name:</label><br>
+        <input type="text" id="character-name" name="player-name"><br>
+
+        <label for="character-name">Character Name:</label><br>
+        <input type="text" id="character-name" name="player-name"><br>
     </form>
 {% endblock %}

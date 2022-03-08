@@ -19,7 +19,6 @@ logger.info("Initiallizing database...")
 class UserNotFoundException(Exception):
     pass
 
-
 class User(flask_login.UserMixin):
     password: str
     pfp_path: str = PFP_PATH + "unknown_user.svg"
@@ -46,6 +45,9 @@ class Database:
     __users: List[User]
 
     def __init__(self):
+        self.reload_json()
+
+    def reload_json(self):
         if not USERS_PATH.exists():
             USERS_PATH.parent.mkdir(exist_ok=True)
             with open(USERS_PATH, "w") as f:
@@ -63,6 +65,7 @@ class Database:
         return True
 
     def get_user(self, username: str) -> User:
+        self.reload_json()
         for user in self.__users:
             if user.id == username:
                 return user
