@@ -250,6 +250,17 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #profile {
+    #profile-headers {
+        display: flex;
+        flex-direction: row;
+
+        img {
+            margin-top: 10px;
+            margin-right: 10px;
+            width: 80px;
+        }
+    }
+
     .title {
         margin-top: 20px;
     }

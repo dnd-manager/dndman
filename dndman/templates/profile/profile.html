@@ -6,17 +6,17 @@
 
 {% block content %}
     <main id="profile">
-        <h1 class="title">{{username}}'s Profile</h1>
-        <img src="{{pfp}}" alt="Profile Picture">
+        <section id="profile-headers">
+            <img src="{{pfp}}" alt="Profile Picture">    
+            <h1 class="title">{{username}}'s Profile</h1>
+        </section>
 
         <section id="characters">
             <div class="section-header">
                 <h2 class="subtitle">Characters</h2> 
                 <a href="{{url_for('player.character_creator')}}" class="button">Character Creator</a>
             </div>
-            <div class="section-content">
-                
-            </div>
+            <div class="section-content"></div>
         </section>
 
         <a href="{{url_for('auth.logout')}}" class="button">Logout</a>

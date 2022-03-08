@@ -13,7 +13,6 @@ USERS_PATH = Path("./database/database.json")
 PFP_PATH = "/static/resources/users/"
 
 logger.setLevel(logging.DEBUG)
-
 logger.info("Initiallizing database...")
 
 
