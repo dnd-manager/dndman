@@ -3,3 +3,15 @@
     <a href="{{url_for('player.dice_roll')}}" class="button navbar-item" title="Dice Roler">Dice Roller</a>
     <a href="{{url_for('player.character_creator')}}" class="button navbar-item" title="Character Creator">Character Creator</a>
 {% endblock %}
+{% block content %}
+    <div id="dice-roll">
+        <h2 class="dice-result">{{rand_d4}}</h2>
+        <form action="#" method="post">
+            <label for="range">Dice Range:</label><br>
+            <input type="text" name="range" id="range"><br>
+            <input type="submit" value="Roll" class="button">
+        </form>
+    </div>
+    {% block new_content %}
+    {% endblock %}
+{% endblock %}

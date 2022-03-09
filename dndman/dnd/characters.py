@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import Dict
+from gameplay import DiceRoll
 
 class CharacterValue:
     value: int
@@ -24,8 +25,13 @@ class CharacterValue:
     def __repr__(self) -> str:
         return f"CharacterValue(value={self.value}, modifier={self.modifier})"
 
-class SkillValue(CharacterValue):
-    pass
+class SkillValue:
+    proficient: bool
+    value: int
+    strength_type: EStrengthTypes
+
+    def __init__(self, strength_type: EStrengthTypes):
+        self.strength_type = strength_type
 
 class EStrengthTypes(Enum):
     STRENGTH = 0,
@@ -44,7 +50,9 @@ class Character:
     armor_class: int
     intiative: int
     speed: int
-    hit_points: int
+    max_hit_points: int
+    current_hit_points: int
+    hit_dice: DiceRoll
 
     strength_value = CharacterValue(EStrengthTypes.STRENGTH)
     dexerity_value = CharacterValue(EStrengthTypes.DEXTERITY)
@@ -59,3 +67,4 @@ class Character:
     intelligence_saving_throw: int
     wisdom_saving_throw: int
     charisma_saving_throw: int
+
