@@ -14,6 +14,11 @@ $white-dark: #CCC;
 
 $border-color: #5c0091;
 
+@mixin flex-centered {
+    display: flex;
+    align-items: center;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -39,20 +44,22 @@ p, h1, h2, h3, h4, h5, h6 {
     border-style: solid;
     border-radius: 5px;
     border-color: $border-color;
+
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    
     color: $white-light;
+    background-color: $black-dark;
     font-family: $font;
+    
     margin: 10px;
     padding: 5px;
-    background-color: $black-dark;
+    
+    @include flex-centered();
+    justify-content: center;
 }
 
 .title {
-    display: flex;
-    align-items: center;
+    @include flex-centered();
     justify-content: space-between;
 
     font-family: $display-font;
@@ -60,8 +67,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .subtitle {
-    display: flex;
-    align-items: center;
+    @include flex-centered();
     justify-content: space-between;
 
     font-family: $font;
@@ -74,8 +80,7 @@ p, h1, h2, h3, h4, h5, h6 {
     padding: 0 50px;
     margin: 0 -50px;
 
-    display: flex;
-    align-items: center;
+    @include flex-centered();
     justify-content: space-between;
 
     background-color: $black-dark;
@@ -86,8 +91,7 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 
     h1 {
-        display: flex;
-        align-items: center;
+        @include flex-centered();
         justify-content: space-between;
 
         font-family: $display-font;
@@ -125,8 +129,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #home {
-    display: flex;
-    align-items: center;
+    @include flex-centered();
     justify-content: center;
     flex-direction: column;
 
@@ -154,8 +157,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .character-creator {
-    display: flex;
-    align-items: center;
+    @include flex-centered();
     justify-content: center;
     flex-direction: column;
 
@@ -173,16 +175,14 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #auth {
-    display: flex;
-    align-items: center;
+    @include flex-centered();
     justify-content: center;
 
     main {
         width: 300px;
         height: 400px;
 
-        display: flex;
-        align-items: center;
+        @include flex-centered();
         justify-content: center;
         flex-direction: column;
 
@@ -293,30 +293,47 @@ p, h1, h2, h3, h4, h5, h6 {
     }
 }
 
-#dice-roll .dice{
+#dice-roll {
+    width: 300px;
+    height: auto;
+
+    border: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: $border-color;
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
 
-    h2 {
+    .dice{
         display: flex;
         align-items: center;
-        justify-content: center;
         flex-direction: column;
 
-        width: 75px;
-        height: 75px;
-        
-        border: solid;
-        border-radius: 5px;
-        border-width: 2px;
-        border-color: $border-color;
-        
-        background-color: $black-dark;        
-    }
-
-    .button {
-        width: 75px;
+        h2 {
+            @include flex-centered();
+            justify-content: center;
+            flex-direction: column;
+    
+            width: 75px;
+            height: 75px;
+            
+            border: solid;
+            border-radius: 5px;
+            border-width: 2px;
+            border-color: $border-color;
+            
+            background-color: $black-dark;    
+            
+            margin-top: 10px;
+        }
+    
+        .button {
+            width: 75px;
+        }
     }
 }

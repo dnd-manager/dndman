@@ -26,14 +26,14 @@ p, h1, h2, h3, h4, h5, h6 {
   border-radius: 5px;
   border-color: #5c0091;
   text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #EEE;
+  background-color: #111;
   font-family: "Noto Sans", serif;
   margin: 10px;
   padding: 5px;
-  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {
@@ -232,10 +232,22 @@ p, h1, h2, h3, h4, h5, h6 {
   border-color: #5c0091;
 }
 
+#dice-roll {
+  width: 300px;
+  height: auto;
+  border: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #5c0091;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
 #dice-roll .dice {
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 #dice-roll .dice h2 {
@@ -250,6 +262,7 @@ p, h1, h2, h3, h4, h5, h6 {
   border-width: 2px;
   border-color: #5c0091;
   background-color: #111;
+  margin-top: 10px;
 }
 #dice-roll .dice .button {
   width: 75px;
