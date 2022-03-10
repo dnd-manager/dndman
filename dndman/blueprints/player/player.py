@@ -6,12 +6,12 @@ player = Blueprint(
     "player", __name__, static_folder="static", template_folder="templates"
 )
 
-rand_d: int
+rand_d: int = 0
 
 @player.route("/")
 @flask_login.login_required
 def player_view():
-    return render_template("player/player.html")
+    return render_template("player/player.html", rand_d=rand_d)
 
 @player.route("/dice_roll", methods=["GET", "POST"])
 @flask_login.login_required

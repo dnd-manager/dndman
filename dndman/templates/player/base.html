@@ -5,12 +5,10 @@
 {% endblock %}
 {% block content %}
     <div id="dice-roll">
-        <h2 class="dice-result">{{rand_d4}}</h2>
-        <form action="#" method="post">
-            <label for="range">Dice Range:</label><br>
-            <input type="text" name="range" id="range"><br>
-            <input type="submit" value="Roll" class="button">
-        </form>
+        <div id="d20" class="dice">
+            <h2 id="d20-value">20</h2>
+            <button class="button">Roll</button>
+        </div>
     </div>
     {% block new_content %}
     {% endblock %}

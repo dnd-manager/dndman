@@ -232,4 +232,27 @@ p, h1, h2, h3, h4, h5, h6 {
   border-color: #5c0091;
 }
 
+#dice-roll .dice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+#dice-roll .dice h2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 75px;
+  height: 75px;
+  border: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #5c0091;
+  background-color: #111;
+}
+#dice-roll .dice .button {
+  width: 75px;
+}
+
 /*# sourceMappingURL=style.css.map */
