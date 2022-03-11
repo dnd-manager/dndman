@@ -11,4 +11,3 @@ class DiceRoll:
 
     def get_dice_type(self) -> int:
         return self.__dice_type
-

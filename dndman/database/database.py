@@ -5,6 +5,7 @@ import flask_login
 from typing import Dict, List, Any
 from pathlib import Path
 import json
+import uuid
 
 from dndman.logger import logger
 import logging
@@ -19,6 +20,7 @@ logger.info("Initiallizing database...")
 class UserNotFoundException(Exception):
     pass
 
+
 class User(flask_login.UserMixin):
     username: str
     password: str
@@ -26,9 +28,15 @@ class User(flask_login.UserMixin):
 
     def __init__(self):
         super().__init__()
+        self.id = str(uuid.uuid4())
 
     def serialize(self) -> Dict[str, str]:
-        return {"username": self.username, "id": self.id, "password": self.password, "pfp": self.pfp_path}
+        return {
+            "username": self.username,
+            "id": self.id,
+            "password": self.password,
+            "pfp": self.pfp_path,
+        }
 
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> User:
@@ -59,14 +67,14 @@ class Database:
             data: Dict[str, List[Any]] = json.load(f)
             self.deserialize(data)
 
-    def has_user(self, username: str) -> bool:
+    def has_user_with_username(self, username: str) -> bool:
         try:
-            self.get_user(username)
+            self.get_user_with_username(username)
         except UserNotFoundException:
             return False
         return True
 
-    def get_user(self, username: str) -> User:
+    def get_user_with_username(self, username: str) -> User:
         self.reload_json()
         for user in self.__users:
             if user.username == username:
@@ -74,14 +82,14 @@ class Database:
 
         raise UserNotFoundException
 
-    def has_user_with_id(self, id: str) -> bool:
+    def has_user(self, id: str) -> bool:
         try:
-            self.get_user_with_id(id)
+            self.get_user(id)
         except UserNotFoundException:
             return False
         return True
 
-    def get_user_with_id(self, id: str) -> User:
+    def get_user(self, id: str) -> User:
         self.reload_json()
         for user in self.__users:
             if user.id == id:
@@ -99,9 +107,7 @@ class Database:
         pass
 
     def serialize(self):
-        return {
-            "users": self.serialize_users()
-        }
+        return {"users": self.serialize_users()}
 
     def deserialize(self, data):
         try:
@@ -110,10 +116,11 @@ class Database:
             pass
 
     def serialize_users(self) -> List[Dict[str, str]]:
-        return list(map(lambda user: user.serialize(), self.__users));
+        return list(map(lambda user: user.serialize(), self.__users))
 
     @staticmethod
     def deserialize_users(users) -> List[User]:
-        return list(map(lambda user: User.deserialize(user), users));
+        return list(map(lambda user: User.deserialize(user), users))
+
 
 database: Database = Database()

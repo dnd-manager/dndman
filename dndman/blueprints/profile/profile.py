@@ -7,8 +7,12 @@ profile = Blueprint(
     "profile", __name__, static_folder="static", template_folder="templates"
 )
 
+
 @profile.route("/")
 @flask_login.login_required
 def profile_page():
-    return render_template("profile/profile.html", username=flask_login.current_user.id, pfp=flask_login.current_user.pfp_path)
-    # return render_template("profile/profile.html", username=flask_login.current_user.id)
+    return render_template(
+        "profile/profile.html",
+        username=flask_login.current_user.username,
+        pfp=flask_login.current_user.pfp_path,
+    )

@@ -2,7 +2,6 @@ import logging
 from colorama import Fore
 
 
-
 class Formatter(logging.Formatter):
     """A class for formatting colored logs."""
 
@@ -30,6 +29,7 @@ class Formatter(logging.Formatter):
 
         formatter = logging.Formatter(self.FORMAT)
         return formatter.format(record)
+
 
 logger = logging.getLogger("dndman")
 

@@ -22,20 +22,16 @@ def user_loader(id):
     if not database.has_user(id):
         return
 
-    user = User()
-    user.id = id
-    return user
+    return database.get_user(id)
 
 
 @login_manager.request_loader
 def request_loader(request):
     username = request.form.get("username")
-    if not database.has_user(username):
+    if not database.has_user_with_username(username):
         return
 
-    user = User()
-    user.id = username
-    return user
+    return database.get_user_with_username(username)
 
 
 @auth.route("/login", methods=["GET", "POST"])
@@ -50,10 +46,9 @@ def login_internal(username, password):
     print(username + " requested a login")
 
     try:
-        user = database.get_user(username)
+        user = database.get_user_with_username(username)
         if user.password == password:
             flask_login.login_user(user)
-            loggedIn = True
             return redirect(url_for("profile.profile_page"))
         else:
             flash("Password is incorrect", "error")
@@ -82,7 +77,7 @@ def signup_internal(username, password, password_confirmation):
     print(username + " requested a signup")
 
     # if signup uses a user name already exist we do not proceed
-    if database.has_user(username):
+    if database.has_user_with_username(username):
         flash("User with this name already exists!")
         return redirect(url_for("auth.signup"))
 
@@ -93,7 +88,7 @@ def signup_internal(username, password, password_confirmation):
 
     # create user
     user = User()
-    user.id = username
+    user.username = username
     user.password = password
     database.add_user(user)
 

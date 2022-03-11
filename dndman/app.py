@@ -21,7 +21,7 @@ from typing import Dict
 load_dotenv()
 app = Flask(__name__)
 
-logger.info('Starting...')
+logger.info("Starting...")
 
 auth.init_login_manager(app)
 
@@ -44,10 +44,12 @@ app.register_blueprint(profile.profile, url_prefix="/profile")
 def protected():
     return "Logged in as: " + flask_login.current_user.id
 
+
 @app.route("/")
 def home():
     if flask_login.current_user.is_authenticated:
         return redirect(url_for("profile.profile_page"))
     return render_template("home.html")
 
-logger.info('Started.')
+
+logger.info("Started.")

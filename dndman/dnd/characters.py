@@ -4,6 +4,7 @@ from enum import Enum
 from typing import Dict
 from .gameplay import DiceRoll
 
+
 class CharacterValue:
     value: int
     modifier: int
@@ -13,7 +14,11 @@ class CharacterValue:
         self.strength_type = strength_type
 
     def serialize(self) -> Dict[str, str]:
-        return {"value": str(self.value), "modifier": str(self.modifier), "strength_type": self.strength_type.__repr__()}
+        return {
+            "value": str(self.value),
+            "modifier": str(self.modifier),
+            "strength_type": self.strength_type.__repr__(),
+        }
 
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> CharacterValue:
@@ -25,6 +30,7 @@ class CharacterValue:
     def __repr__(self) -> str:
         return f"CharacterValue(value={self.value}, modifier={self.modifier})"
 
+
 class SkillValue:
     proficient: bool
     value: int
@@ -33,17 +39,19 @@ class SkillValue:
     def __init__(self, strength_type: EStrengthTypes):
         self.strength_type = strength_type
 
+
 class EStrengthTypes(Enum):
-    STRENGTH = 0,
-    DEXTERITY = 1,
-    CONSTITUTION = 2,
-    INTELLIGENCE = 3,
-    WISDOM = 4,
-    CHARISMA = 5;
+    STRENGTH = (0,)
+    DEXTERITY = (1,)
+    CONSTITUTION = (2,)
+    INTELLIGENCE = (3,)
+    WISDOM = (4,)
+    CHARISMA = 5
+
 
 class Character:
     portrait: str
-    
+
     character_name: str
     player_name: str
 
