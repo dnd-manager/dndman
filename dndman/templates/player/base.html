@@ -13,32 +13,32 @@
     <div id="dice-roll" x-show="dice_roller_open">
         <div class="dice" id="d20" x-data="{roll: 20}">
             <h2 id="d20-value" x-text="roll"></h2>
-            <button class="button hoverable" @click="roll = Math.floor(Math.random() * 20) + 1">Roll D20</button>
+            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 20) + 1">Roll D20</button>
         </div>
 
         <div class="dice" id="d12" x-data="{roll: 12}">
             <h2 id="d12-value" x-text="roll"></h2>
-            <button class="button hoverable" @click="roll = Math.floor(Math.random() * 12) + 1">Roll D12</button>
+            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 12) + 1">Roll D12</button>
         </div>
 
         <div class="dice" id="d10" x-data="{roll: 10}">
             <h2 id="d10-value" x-text="roll"></h2>
-            <button class="button hoverable" @click="roll = Math.floor(Math.random() * 10) + 1">Roll D10</button>
+            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 10) + 1">Roll D10</button>
         </div>
 
         <div class="dice" id="d8" x-data="{roll: 8}">
             <h2 id="d8-value" x-text="roll"></h2>
-            <button class="button hoverable" @click="roll = Math.floor(Math.random() * 8) + 1">Roll D8</button>
+            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 8) + 1">Roll D8</button>
         </div>
 
         <div class="dice" id="d6" x-data="{roll: 6}">
             <h2 id="d6-value" x-text="roll"></h2>
-            <button class="button hoverable" @click="roll = Math.floor(Math.random() * 6) + 1">Roll D6</button>
+            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 6) + 1">Roll D6</button>
         </div>
 
         <div class="dice" id="d4" x-data="{roll: 4}">
             <h2 id="d4-value" x-text="roll"></h2>
-            <button class="button hoverable" @click="roll = Math.floor(Math.random() * 4) + 1">Roll D4</button>
+            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 4) + 1">Roll D4</button>
         </div>
     </div>
 

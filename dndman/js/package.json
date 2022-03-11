@@ -1,0 +1,14 @@
+{
+  "name": "dndman",
+  "version": "1.0.0",
+  "description": "DnDMan",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "alpinejs": "^3.9.1"
+  }
+}
