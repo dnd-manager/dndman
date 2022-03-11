@@ -20,6 +20,7 @@ class UserNotFoundException(Exception):
     pass
 
 class User(flask_login.UserMixin):
+    username: str
     password: str
     pfp_path: str = PFP_PATH + "unknown_user.svg"
 
@@ -27,18 +28,19 @@ class User(flask_login.UserMixin):
         super().__init__()
 
     def serialize(self) -> Dict[str, str]:
-        return {"username": self.id, "password": self.password, "pfp": self.pfp_path}
+        return {"username": self.username, "id": self.id, "password": self.password, "pfp": self.pfp_path}
 
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> User:
         user = User()
-        user.id = inp["username"]
+        user.username = inp["username"]
+        user.id = inp["id"]
         user.password = inp["password"]
         user.pfp_path = inp["pfp"]
         return user
 
     def __repr__(self) -> str:
-        return f"User(id={self.id}, password={self.password}, pfp={self.pfp_path})"
+        return f"User(username={self.username}, id={self.id}, password={self.password}, pfp={self.pfp_path})"
 
 
 class Database:
@@ -67,7 +69,22 @@ class Database:
     def get_user(self, username: str) -> User:
         self.reload_json()
         for user in self.__users:
-            if user.id == username:
+            if user.username == username:
+                return user
+
+        raise UserNotFoundException
+
+    def has_user_with_id(self, id: str) -> bool:
+        try:
+            self.get_user_with_id(id)
+        except UserNotFoundException:
+            return False
+        return True
+
+    def get_user_with_id(self, id: str) -> User:
+        self.reload_json()
+        for user in self.__users:
+            if user.id == id:
                 return user
 
         raise UserNotFoundException

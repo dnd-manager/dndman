@@ -36,6 +36,14 @@ p, h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
+.hoverable {
+  transition: all 0.25s;
+}
+.hoverable:hover {
+  background-color: #222;
+  cursor: pointer;
+}
+
 .title {
   display: flex;
   align-items: center;
@@ -233,17 +241,18 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #dice-roll {
-  width: 300px;
-  height: auto;
+  width: 200px;
+  max-height: 500px;
   border: solid;
   border-radius: 5px;
   border-width: 2px;
   border-color: #5c0091;
-  margin-top: 5%;
-  margin-bottom: 5%;
   display: flex;
-  align-items: center;
   flex-direction: column;
+  flex-wrap: wrap;
+  position: absolute;
+  left: 50px;
+  top: 125px;
 }
 #dice-roll .dice {
   display: flex;
@@ -260,7 +269,7 @@ p, h1, h2, h3, h4, h5, h6 {
   border: solid;
   border-radius: 5px;
   border-width: 2px;
-  border-color: #5c0091;
+  border-color: #07b8c5;
   background-color: #111;
   margin-top: 10px;
 }

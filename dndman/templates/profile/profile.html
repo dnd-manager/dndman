@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block navbar %}
-    <a href="{{url_for('player.player_view')}}" class="button navbar-item">Player View</a>
-    <a href="{{url_for('dm.dm_view')}}" class="button navbar-item">DM View</a>
+    <a href="{{url_for('player.player_view')}}" class="button navbar-item hoverable">Player View</a>
+    <a href="{{url_for('dm.dm_view')}}" class="button navbar-item hoverable">DM View</a>
 {% endblock %}
 
 {% block content %}
@@ -14,11 +14,11 @@
         <section id="characters">
             <div class="section-header">
                 <h2 class="subtitle">Characters</h2> 
-                <a href="{{url_for('player.character_creator')}}" class="button">Character Creator</a>
+                <a href="{{url_for('player.character_creator')}}" class="button hoverable">Character Creator</a>
             </div>
             <div class="section-content"></div>
         </section>
 
-        <a href="{{url_for('auth.logout')}}" class="button">Logout</a>
+        <a href="{{url_for('auth.logout')}}" class="button hoverable">Logout</a>
     </main>
 {% endblock %}

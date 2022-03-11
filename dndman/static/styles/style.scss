@@ -13,6 +13,7 @@ $white-mid: #DDD;
 $white-dark: #CCC;
 
 $border-color: #5c0091;
+$border-alternate: #07b8c5;
 
 @mixin flex-centered {
     display: flex;
@@ -56,6 +57,15 @@ p, h1, h2, h3, h4, h5, h6 {
     
     @include flex-centered();
     justify-content: center;
+}
+
+.hoverable {
+    transition: all .25s;
+
+    &:hover {
+        background-color: $black-mid;
+        cursor: pointer;
+    }
 }
 
 .title {
@@ -294,24 +304,24 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 #dice-roll {
-    width: 300px;
-    height: auto;
+    width: 200px;
+    max-height: 500px;
 
     border: solid;
     border-radius: 5px;
     border-width: 2px;
     border-color: $border-color;
 
-    margin-top: 5%;
-    margin-bottom: 5%;
-
     display: flex;
-    align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+
+    position: absolute;
+    left: 50px;
+    top: 125px;
 
     .dice{
-        display: flex;
-        align-items: center;
+        @include flex-centered();
         flex-direction: column;
 
         h2 {
@@ -325,7 +335,7 @@ p, h1, h2, h3, h4, h5, h6 {
             border: solid;
             border-radius: 5px;
             border-width: 2px;
-            border-color: $border-color;
+            border-color: $border-alternate;
             
             background-color: $black-dark;    
             

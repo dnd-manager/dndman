@@ -18,12 +18,12 @@ def unauthorized():
 
 
 @login_manager.user_loader
-def user_loader(username):
-    if not database.has_user(username):
+def user_loader(id):
+    if not database.has_user(id):
         return
 
     user = User()
-    user.id = username
+    user.id = id
     return user
 
 

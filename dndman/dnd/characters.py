@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from enum import Enum
 from typing import Dict
-from gameplay import DiceRoll
+from .gameplay import DiceRoll
 
 class CharacterValue:
     value: int
@@ -13,13 +13,13 @@ class CharacterValue:
         self.strength_type = strength_type
 
     def serialize(self) -> Dict[str, str]:
-        return {"value": self.value, "modifier": self.modifier}
+        return {"value": str(self.value), "modifier": str(self.modifier), "strength_type": self.strength_type.__repr__()}
 
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> CharacterValue:
-        character_value = CharacterValue()
-        character_value.value = inp["value"]
-        character_value.modifier = inp["modifier"]
+        character_value = CharacterValue(EStrengthTypes[inp["strength_type"]])
+        character_value.value = int(inp["value"])
+        character_value.modifier = int(inp["modifier"])
         return character_value
 
     def __repr__(self) -> str:
@@ -67,4 +67,3 @@ class Character:
     intelligence_saving_throw: int
     wisdom_saving_throw: int
     charisma_saving_throw: int
-
