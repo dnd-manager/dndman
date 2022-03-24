@@ -30,7 +30,7 @@ Note: Every time you open a new terminal you must run `poetry shell` again. Or e
 invoke debug
 ```
 
-Running the production server (Not implemented):
+Running the production server (Not yet implemented):
 
 ```bash
 invoke start
