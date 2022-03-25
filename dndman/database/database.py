@@ -30,6 +30,7 @@ class User(flask_login.UserMixin):
         super().__init__()
         self.id = str(uuid.uuid4())
 
+    # serialize user into a json object    
     def serialize(self) -> Dict[str, str]:
         return {
             "username": self.username,
@@ -38,6 +39,7 @@ class User(flask_login.UserMixin):
             "pfp": self.pfp_path,
         }
 
+    # deserialize user back into a python object from a json object
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> User:
         user = User()
@@ -57,6 +59,7 @@ class Database:
     def __init__(self):
         self.reload_json()
 
+    # load data from json
     def reload_json(self):
         if not USERS_PATH.exists():
             USERS_PATH.parent.mkdir(exist_ok=True)
@@ -67,6 +70,7 @@ class Database:
             data: Dict[str, List[Any]] = json.load(f)
             self.deserialize(data)
 
+    # check if user with username exist
     def has_user_with_username(self, username: str) -> bool:
         try:
             self.get_user_with_username(username)
@@ -74,7 +78,11 @@ class Database:
             return False
         return True
 
+    
+    # get user with username
+    # Exceptions: raises UserNotFoundException if not found
     def get_user_with_username(self, username: str) -> User:
+        "Takes username, and returns user with that username."
         self.reload_json()
         for user in self.__users:
             if user.username == username:
@@ -82,6 +90,7 @@ class Database:
 
         raise UserNotFoundException
 
+    # check if user with id exist
     def has_user(self, id: str) -> bool:
         try:
             self.get_user(id)
@@ -89,6 +98,8 @@ class Database:
             return False
         return True
 
+    # get user with id
+    # Exceptions: raises UserNotFoundException if not found
     def get_user(self, id: str) -> User:
         self.reload_json()
         for user in self.__users:
@@ -97,27 +108,34 @@ class Database:
 
         raise UserNotFoundException
 
+    # add user to database
+    # Side Effects: Causes Json Dump with new data
     def add_user(self, user: User):
         self.__users.append(user)
         self.commit()
 
+    # dump data into database json
     def commit(self):
         with open(USERS_PATH, "w") as f:
             json.dump(self.serialize(), f, indent=4)
         pass
 
+    # serialize all database objects into json
     def serialize(self):
         return {"users": self.serialize_users()}
 
+    # deserializes all database objects from json
     def deserialize(self, data):
         try:
             self.__users = Database.deserialize_users(data["users"])
         except KeyError:
             pass
 
+    # serialize users in database to json
     def serialize_users(self) -> List[Dict[str, str]]:
         return list(map(lambda user: user.serialize(), self.__users))
 
+    # deserialize users in database from json
     @staticmethod
     def deserialize_users(users) -> List[User]:
         return list(map(lambda user: User.deserialize(user), users))

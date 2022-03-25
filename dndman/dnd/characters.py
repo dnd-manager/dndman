@@ -19,7 +19,7 @@ class CharacterValue:
             "modifier": str(self.modifier),
             "strength_type": self.strength_type.__repr__(),
         }
-
+        
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> CharacterValue:
         character_value = CharacterValue(EStrengthTypes[inp["strength_type"]])
@@ -41,11 +41,11 @@ class SkillValue:
 
 
 class EStrengthTypes(Enum):
-    STRENGTH = (0,)
-    DEXTERITY = (1,)
-    CONSTITUTION = (2,)
-    INTELLIGENCE = (3,)
-    WISDOM = (4,)
+    STRENGTH = 0,
+    DEXTERITY = 1,
+    CONSTITUTION = 2,
+    INTELLIGENCE = 3,
+    WISDOM = 4,
     CHARISMA = 5
 
 
