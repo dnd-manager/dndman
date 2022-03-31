@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, render_template, request
+from flask import Blueprint, redirect, render_template, request, url_for
 from dndman.database.database import PFP_PATH, database
 from dndman.logger import logger
 from werkzeug.utils import secure_filename
@@ -26,7 +26,7 @@ def profile_page():
             flask_login.current_user.pfp_path = pfp_path
             database.get_user(flask_login.current_user.id).pfp_path = pfp_path
             database.commit()
-
+            return redirect(url_for("profile.profile_page"))
 
     logger.info(flask_login.current_user.pfp_path)
 

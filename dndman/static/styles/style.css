@@ -212,6 +212,23 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-right: 10px;
   width: 80px;
 }
+#profile #upload-pfp {
+  position: absolute;
+  left: 42%;
+  width: 300px;
+  height: 400px;
+  border: 5px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: #5c0091;
+  background-color: #111;
+}
+#profile #upload-pfp form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
 #profile .title {
   margin-top: 20px;
 }

@@ -11,10 +11,22 @@
             <h1 class="title">{{username}}'s Profile</h1>
         </section>
         
-        <div x-show="upload_pfp">
+        <div id="upload-pfp" x-show="upload_pfp">
             <form action="#" method="post" enctype=multipart/form-data>
-                <input type="file" name="pfp" accept="image/png, image/jpeg">
-                <input type=submit value=Upload>
+                <input id="pfp_file_upload_input" type="file" name="pfp" accept="image/png, image/jpeg" hidden="hidden">
+                <button id="pfp_button" class="button hoverable" onclick="click()">Choose File</button>
+                <span id="pfp_text">No file selected</span>
+                <input type=submit value="Upload" class="button hoverable">
+
+                <script type="text/javascript">
+                    const uploader = document.getElementById("pfp_file_upload_input");
+                    const button = document.getElementById("pfp_button");
+                    const text = document.getElementById("pfp_text");
+                    
+                    button.addEventListener("click", function() {
+                        uploader.click();
+                    });
+                </script>
             </form>
         </div>
 
