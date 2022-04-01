@@ -28,7 +28,7 @@
                 <div class="drop-area">
                     <span class="drop-label">Drag and Drop an image or click to select</span>
                 </div>
-                <input class="upload-input" type="file" name="pfp" accept="image/png, image/jpeg" hidden="hidden">
+                <input class="upload-input" type="file" name="pfp" accept="image/png, image/jpeg, image/svg" hidden="hidden">
                 <input type=submit value="Upload" class="button hoverable">
             </form>
             <button class="button hoverable" @click="upload_pfp = false">Cancel</button>
@@ -71,6 +71,7 @@
                     uploader.click();
                 });
 
+                // update text
                 uploader.addEventListener("change", event => {
                     let path = event.target.value;
                     label.textContent = path.substring(path.lastIndexOf("\\") + 1);
