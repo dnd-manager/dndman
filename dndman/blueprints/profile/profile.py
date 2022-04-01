@@ -8,7 +8,7 @@ import flask_login
 profile = Blueprint(
     "profile", __name__, static_folder="static", template_folder="templates"
 )
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'svg'}
 
 @profile.route("/", methods=["GET", "POST"])
 @flask_login.login_required
