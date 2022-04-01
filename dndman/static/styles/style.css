@@ -36,6 +36,16 @@ p, h1, h2, h3, h4, h5, h6 {
   justify-content: center;
 }
 
+.overlay {
+  transition: all 0.25s;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  background: rgba(228, 228, 228, 0.2);
+}
+
 .hoverable {
   transition: all 0.25s;
 }
@@ -211,13 +221,21 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-top: 10px;
   margin-right: 10px;
   width: 80px;
+  cursor: pointer;
 }
 #profile #upload-pfp {
+  transition: all 0.25s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   position: absolute;
-  left: 42%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 300px;
-  height: 400px;
-  border: 5px;
+  height: 430px;
+  border: 3px;
   border-style: solid;
   border-radius: 10px;
   border-color: #5c0091;
@@ -228,6 +246,33 @@ p, h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+#profile #upload-pfp form .drop-area {
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  margin-bottom: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  cursor: pointer;
+  border: 2px;
+  border-color: #07b8c5;
+  border-radius: 10px;
+  border-style: dashed;
+}
+#profile #upload-pfp form .drop-area span {
+  transition: all 0.25s;
+  color: #EEE;
+  font-family: "Noto Sans", serif;
+  font-size: 20px;
+  text-overflow: ellipsis;
+}
+#profile #upload-pfp form .drop-area .drag-over {
+  transition: all 0.25s;
+  color: #CCC;
 }
 #profile .title {
   margin-top: 20px;

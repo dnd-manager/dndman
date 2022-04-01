@@ -7,16 +7,12 @@ import colorama
 colorama.init()
 
 from .logger import logger
-
 logger.setLevel(logging.DEBUG)
 
 from dotenv import load_dotenv
 from os import getenv
 
 from .blueprints import player, dm, auth, profile
-from .database import database
-
-from typing import Dict
 
 load_dotenv()
 app = Flask(__name__)

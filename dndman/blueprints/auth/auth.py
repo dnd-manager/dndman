@@ -55,6 +55,7 @@ def login_internal(username, password):
             pass
     except UserNotFoundException:
         flash("User name not found", "error")
+        return redirect(url_for("auth.login"))
     else:
         flash("Bad login, try again", "error")
 

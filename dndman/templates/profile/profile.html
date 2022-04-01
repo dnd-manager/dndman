@@ -10,25 +10,6 @@
             <img src="{{pfp}}" alt="Profile Picture" @click="upload_pfp = !upload_pfp">    
             <h1 class="title">{{username}}'s Profile</h1>
         </section>
-        
-        <div id="upload-pfp" x-show="upload_pfp">
-            <form action="#" method="post" enctype=multipart/form-data>
-                <input id="pfp_file_upload_input" type="file" name="pfp" accept="image/png, image/jpeg" hidden="hidden">
-                <button id="pfp_button" class="button hoverable" onclick="click()">Choose File</button>
-                <span id="pfp_text">No file selected</span>
-                <input type=submit value="Upload" class="button hoverable">
-
-                <script type="text/javascript">
-                    const uploader = document.getElementById("pfp_file_upload_input");
-                    const button = document.getElementById("pfp_button");
-                    const text = document.getElementById("pfp_text");
-                    
-                    button.addEventListener("click", function() {
-                        uploader.click();
-                    });
-                </script>
-            </form>
-        </div>
 
         <section id="characters">
             <div class="section-header">
@@ -38,7 +19,63 @@
             <div class="section-content"></div>
         </section>
 
-
         <a href="{{url_for('auth.logout')}}" class="button hoverable">Logout</a>
+        
+        <div class="overlay" x-show="upload_pfp"></div>
+
+        <div id="upload-pfp" x-show="upload_pfp">
+            <form class="drop-form" action="#" method="post" enctype=multipart/form-data>
+                <div class="drop-area">
+                    <span class="drop-label">Drag and Drop an image or click to select</span>
+                </div>
+                <input class="upload-input" type="file" name="pfp" accept="image/png, image/jpeg" hidden="hidden">
+                <input type=submit value="Upload" class="button hoverable">
+            </form>
+            <button class="button hoverable" @click="upload_pfp = false">Cancel</button>
+        </div>
+    
+        <script>
+            document.querySelectorAll(".drop-form").forEach(form => {
+                const uploader = form.getElementsByClassName("upload-input")[0];
+                const label = form.getElementsByClassName("drop-label")[0];
+                const daEle = form.getElementsByClassName("drop-area")[0];
+
+                // when over make text darker
+                daEle.addEventListener("dragover", event => {
+                    event.preventDefault();
+                    label.classList.add("drag-over");
+                });
+
+                // exit
+                ["dragleave", "dragend"].forEach(eventType => {
+                    daEle.addEventListener(eventType, event => {
+                        label.classList.remove("drag-over");                      
+                    });
+                });
+                
+                // drop
+                daEle.addEventListener("drop", event => {
+                    event.preventDefault();
+
+                    if (event.dataTransfer.files.length > 0) {
+                        uploader.files = event.dataTransfer.files;
+                        uploader.dispatchEvent(new Event("change"));
+                    }
+
+                    label.classList.remove("drag-over");
+                });
+
+                // click
+                daEle.addEventListener("click", event => {
+                    event.preventDefault();
+                    uploader.click();
+                });
+
+                uploader.addEventListener("change", event => {
+                    let path = event.target.value;
+                    label.textContent = path.substring(path.lastIndexOf("\\") + 1);
+                });
+            });
+        </script>
     </main>
 {% endblock %}

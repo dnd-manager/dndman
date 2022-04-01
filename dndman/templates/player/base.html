@@ -1,46 +1,71 @@
 {% extends 'base.html' %}
 
 {% block body_attrs %}
-    x-data="{dice_roller_open: false}"
+    {dice_roller_open: false}"
 {% endblock %}
 
 {% block navbar %}
-    <div class="button navbar-item hoverable" @click="dice_roller_open=!dice_roller_open">Dice Roller</div>
+    <div class="button navbar-item hoverable" @click="dice_roller_open =! dice_roller_open">Dice Roller</div>
     <a href="{{url_for('player.character_creator')}}" class="button navbar-item hoverable" title="Character Creator">Character Creator</a>
 {% endblock %}
 
 {% block content %}
     <div id="dice-roll" x-show="dice_roller_open">
-        <div class="dice" id="d20" x-data="{roll: 20}">
-            <h2 id="d20-value" x-text="roll"></h2>
-            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 20) + 1">Roll D20</button>
+        <div class="dice" id="d20" dice_count="20">
+            <h2></h2>
+            <button class="button hoverable dice-button">Roll D20</button>
         </div>
 
-        <div class="dice" id="d12" x-data="{roll: 12}">
-            <h2 id="d12-value" x-text="roll"></h2>
-            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 12) + 1">Roll D12</button>
+        <div class="dice" id="d12" dice_count="12">
+            <h2></h2>
+            <button class="button hoverable dice-button">Roll D12</button>
         </div>
 
-        <div class="dice" id="d10" x-data="{roll: 10}">
-            <h2 id="d10-value" x-text="roll"></h2>
-            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 10) + 1">Roll D10</button>
+        <div class="dice" id="d10" dice_count="10">
+            <h2></h2>
+            <button class="button hoverable dice-button">Roll D10</button>
         </div>
 
-        <div class="dice" id="d8" x-data="{roll: 8}">
-            <h2 id="d8-value" x-text="roll"></h2>
-            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 8) + 1">Roll D8</button>
+        <div class="dice" id="d8" dice_count="8">
+            <h2></h2>
+            <button class="button hoverable dice-button">Roll D8</button>
         </div>
 
-        <div class="dice" id="d6" x-data="{roll: 6}">
-            <h2 id="d6-value" x-text="roll"></h2>
-            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 6) + 1">Roll D6</button>
+        <div class="dice" id="d6" dice_count="6">
+            <h2></h2>
+            <button class="button hoverable dice-button">Roll D6</button>
         </div>
 
-        <div class="dice" id="d4" x-data="{roll: 4}">
-            <h2 id="d4-value" x-text="roll"></h2>
-            <button class="button hoverable dice-button" @click="roll = Math.floor(Math.random() * 4) + 1">Roll D4</button>
+        <div class="dice" id="d4" dice_count="4">
+            <h2></h2>
+            <button class="button hoverable dice-button">Roll D4</button>
         </div>
     </div>
+
+    <script>
+        document.querySelectorAll(".dice").forEach(dice => {
+            let max = dice.getAttribute("dice_count");
+            let label = dice.getElementsByTagName("h2")[0];
+
+            label.textContent = max;
+
+            dice.getElementsByTagName("button")[0].addEventListener("click", async event => {
+                event.preventDefault();
+                for (let i = 0; i < 20; i++) {
+                    label.textContent = getRand(max);
+                    await sleep(i*10);
+                }
+            });
+        });
+
+        function getRand(max) {
+            return Math.floor(Math.random() * max) + 1;
+        }
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+    </script>
 
     {% block new_content %}
     {% endblock %}
