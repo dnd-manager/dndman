@@ -14,11 +14,7 @@ class CharacterValue:
         self.strength_type = strength_type
 
     def serialize(self) -> Dict[str, str]:
-        return {
-            "value": str(self.value),
-            "modifier": str(self.modifier),
-            "strength_type": self.strength_type.__repr__(),
-        }
+        return self.__dict__
         
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> CharacterValue:
@@ -55,6 +51,9 @@ class Character:
     character_name: str
     player_name: str
 
+    race: str
+    _class: str
+
     armor_class: int
     intiative: int
     speed: int
@@ -75,3 +74,12 @@ class Character:
     intelligence_saving_throw: int
     wisdom_saving_throw: int
     charisma_saving_throw: int
+
+    def serialize(self) -> Dict[str, str]:
+        return self.__dict__
+
+    @staticmethod
+    def deserialize(inp: Dict[str, str]) -> Character:
+        character = Character()
+        character.__dict__.update(inp)
+        return character

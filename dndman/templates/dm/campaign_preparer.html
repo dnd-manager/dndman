@@ -1,0 +1,29 @@
+{% extends 'dm/base.html' %}
+
+{% block content %}
+    <div id="campaign-preparer-canvas">
+        <h2 style="margin-top: 20px" class="subtitle">Campaign Preparer</h2>
+        <div class="text-editor" contenteditable="true"></div>
+        <div class="context-menu" hidden="hidden">
+            <span>DEATH</span>
+        </div>
+    </div>
+
+    <script>
+        let canvas = document.querySelector("#campaign-preparer-canvas");
+        canvas.addEventListener("contextmenu", event => {
+            event.preventDefault();
+            let context = canvas.getElementsByClassName("context-menu")[0];
+            if (context == undefined) return;
+            context.removeAttribute("hidden");
+            
+        });
+
+        canvas.addEventListener("click", event => {
+            event.preventDefault();
+            let context = canvas.getElementsByClassName("context-menu")[0];
+            if (context == undefined) return;
+            context.setAttribute("hidden", "hidden");
+        });
+    </script>
+{% endblock %}

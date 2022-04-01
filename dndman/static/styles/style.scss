@@ -47,7 +47,7 @@ p, h1, h2, h3, h4, h5, h6 {
     border-color: $border-color;
 
     text-decoration: none;
-    
+
     color: $white-light;
     background-color: $black-dark;
     font-family: $font;
@@ -59,7 +59,6 @@ p, h1, h2, h3, h4, h5, h6 {
     justify-content: center;
 }
 
-// TODO: MAKE THIS LOOK NICE!!!
 .overlay {
     transition: all .25s;
     
@@ -68,7 +67,7 @@ p, h1, h2, h3, h4, h5, h6 {
     top: 0px;
     right: 0px;
     bottom: 0px;
-    background: rgba(228, 228, 228, 0.2);
+    background: rgba(228, 228, 228, 0.1);
 }
 
 .hoverable {
@@ -95,6 +94,24 @@ p, h1, h2, h3, h4, h5, h6 {
     font-family: $font;
     font-size: 25px;
     font-weight: normal;
+
+    margin-top: 2%;
+}
+
+.text-editor {
+    background-color: $black-dark;
+    color: $white-mid;
+    
+    margin-top: 2%;
+    
+    height: 100px;
+
+    font-family: $font;
+
+    border-style: solid;
+    border-radius: 5px;
+    border-width: 2px;
+    border-color: $border-color;
 }
 
 #navbar {
@@ -143,7 +160,7 @@ p, h1, h2, h3, h4, h5, h6 {
     }
     
     .button {
-        width: 140px;
+        width: 150px;
         height: 25px;
         margin: 10px;
         padding: 5px;

@@ -43,7 +43,7 @@ p, h1, h2, h3, h4, h5, h6 {
   top: 0px;
   right: 0px;
   bottom: 0px;
-  background: rgba(228, 228, 228, 0.2);
+  background: rgba(228, 228, 228, 0.1);
 }
 
 .hoverable {
@@ -69,6 +69,19 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: "Noto Sans", serif;
   font-size: 25px;
   font-weight: normal;
+  margin-top: 2%;
+}
+
+.text-editor {
+  background-color: #111;
+  color: #DDD;
+  margin-top: 2%;
+  height: 100px;
+  font-family: "Noto Sans", serif;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 2px;
+  border-color: #5c0091;
 }
 
 #navbar {
@@ -107,7 +120,7 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-left: 10px;
 }
 #navbar .button {
-  width: 140px;
+  width: 150px;
   height: 25px;
   margin: 10px;
   padding: 5px;

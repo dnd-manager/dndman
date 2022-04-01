@@ -24,29 +24,22 @@ class UserNotFoundException(Exception):
 class User(flask_login.UserMixin):
     username: str
     password: str
-    pfp_path: str = PFP_PATH + "unknown_user.svg"
+    pfp_path: str
 
     def __init__(self):
         super().__init__()
         self.id = str(uuid.uuid4())
+        self.pfp_path = PFP_PATH + "unknown_user.svg"
 
     # serialize user into a json object    
     def serialize(self) -> Dict[str, str]:
-        return {
-            "username": self.username,
-            "id": self.id,
-            "password": self.password,
-            "pfp": self.pfp_path,
-        }
+        return self.__dict__
 
     # deserialize user back into a python object from a json object
     @staticmethod
     def deserialize(inp: Dict[str, str]) -> User:
         user = User()
-        user.username = inp["username"]
-        user.id = inp["id"]
-        user.password = inp["password"]
-        user.pfp_path = inp["pfp"]
+        user.__dict__.update(inp)
         return user
 
     def __repr__(self) -> str:

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block navbar %}
-    <a href="{{url_for('dm.map_editor')}}" class="button navbar-item hoverable" title="Map Editor">Map Editor</a>
-    <a href="{{url_for('dm.music_editor')}}" class="button navbar-item hoverable" title="Music Editor">Music Editor</a>
+    <a href="{{url_for('dm.map_editor')}}" class="button navbar-item hoverable" title="Not enough imagination? Use a map!">Map Editor</a>
+    <a href="{{url_for('dm.music_editor')}}" class="button navbar-item hoverable" title="Spice up the campaign with music!">Music Editor</a>
+    <a href="{{url_for('dm.campaign_preparer')}}" class="button navbar-item hoverable" title="Prepare your Campaign!">Campaign Preparer</a>
 {% endblock %}
