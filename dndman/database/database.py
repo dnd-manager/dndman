@@ -43,7 +43,7 @@ class User(flask_login.UserMixin):
         return user
 
     def __repr__(self) -> str:
-        return f"User(username={self.username}, id={self.id}, password={self.password}, pfp={self.pfp_path})"
+        return f"User(username={self.username}, id={self.id}, password={self.password}, pfp_path={self.pfp_path})"
 
 
 class Database:

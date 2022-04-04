@@ -5,8 +5,9 @@
 {% endblock %}
 
 {% block navbar %}
-    <div class="button navbar-item hoverable" @click="dice_roller_open =! dice_roller_open">Dice Roller</div>
-    <a href="{{url_for('player.character_creator')}}" class="button navbar-item hoverable" title="Character Creator">Character Creator</a>
+    <div class="button navbar-item hoverable" @click="dice_roller_open =! dice_roller_open" title="Roll the dice!">Dice Roller</div>
+    <a href="{{url_for('player.character_creator')}}" class="button navbar-item hoverable" title="Create your characters, and let the adventure begin!">Character Creator</a>
+    <a target="_blank" href="http://online.anyflip.com/dkneq/yerq/mobile/index.html#p=1" class="button navbar-item hoverable" title="Need to check the rules? No problem">Player Hand Book</a>
 {% endblock %}
 
 {% block content %}
@@ -42,30 +43,7 @@
         </div>
     </div>
 
-    <script>
-        document.querySelectorAll(".dice").forEach(dice => {
-            let max = dice.getAttribute("dice_count");
-            let label = dice.getElementsByTagName("h2")[0];
-
-            label.textContent = max;
-
-            dice.getElementsByTagName("button")[0].addEventListener("click", async event => {
-                event.preventDefault();
-                for (let i = 0; i < 20; i++) {
-                    label.textContent = getRand(max);
-                    await sleep(i*10);
-                }
-            });
-        });
-
-        function getRand(max) {
-            return Math.floor(Math.random() * max) + 1;
-        }
-
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
-        }
-    </script>
+    <script src="/static/js/dice_roll.js"></script>
 
     {% block new_content %}
     {% endblock %}

@@ -3,27 +3,67 @@
 {% block content %}
     <div id="campaign-preparer-canvas">
         <h2 style="margin-top: 20px" class="subtitle">Campaign Preparer</h2>
-        <div class="text-editor" contenteditable="true"></div>
+        <div id="text-editor">
+            
+        </div>
         <div class="context-menu" hidden="hidden">
-            <span>DEATH</span>
+            <button class="button hoverable">Add Monster Stat Block</button>
         </div>
     </div>
 
     <script>
         let canvas = document.querySelector("#campaign-preparer-canvas");
-        canvas.addEventListener("contextmenu", event => {
+        let cancelled = false;
+
+        // show context menu
+        canvas.querySelector(".text-editor").addEventListener("contextmenu", event => {
             event.preventDefault();
             let context = canvas.getElementsByClassName("context-menu")[0];
             if (context == undefined) return;
             context.removeAttribute("hidden");
-            
+            context.style.top = mouseY(event) + "px";
+            context.style.left = mouseX(event) + "px";
+            context.style.position = "absolute";
         });
 
-        canvas.addEventListener("click", event => {
-            event.preventDefault();
+        // prevent closing when clicking on context menu options
+        canvas.querySelector(".context-menu").addEventListener("click", event => {
+            cancelled = true;
+        });
+
+        // hide context menu when clicked else where
+        document.addEventListener("click", event => {
+            if (cancelled) {
+                cancelled = false;
+                return;
+            }
             let context = canvas.getElementsByClassName("context-menu")[0];
             if (context == undefined) return;
             context.setAttribute("hidden", "hidden");
         });
+
+        function mouseX(evt) {
+            if (evt.pageX) {
+                return evt.pageX;
+            } else if (evt.clientX) {
+                return evt.clientX + (document.documentElement.scrollLeft ?
+                document.documentElement.scrollLeft :
+                document.body.scrollLeft);
+            } else {
+                return null;
+            }
+        }
+
+        function mouseY(evt) {
+            if (evt.pageY) {
+                return evt.pageY;
+            } else if (evt.clientY) {
+                return evt.clientY + (document.documentElement.scrollTop ?
+                document.documentElement.scrollTop :
+                document.body.scrollTop);
+            } else {
+                return null;
+            }
+        }
     </script>
 {% endblock %}
