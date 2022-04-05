@@ -8,20 +8,26 @@ import flask_login
 profile = Blueprint(
     "profile", __name__, static_folder="static", template_folder="templates"
 )
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'svg'}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "svg"}
+
 
 @profile.route("/", methods=["GET", "POST"])
 @flask_login.login_required
 def profile_page():
     if request.method == "POST":
-        
+
         if "pfp" not in request.files:
             return redirect(request.url)
-        
+
         raw_pfp = request.files["pfp"]
-        
+
         if allowed_file(raw_pfp.filename):
-            pfp_path = PFP_PATH + flask_login.current_user.id + "." + secure_filename(raw_pfp.filename).rsplit('.', 1)[1].lower()
+            pfp_path = (
+                PFP_PATH
+                + flask_login.current_user.id
+                + "."
+                + secure_filename(raw_pfp.filename).rsplit(".", 1)[1].lower()
+            )
             raw_pfp.save("dndman/" + pfp_path)
             flask_login.current_user.pfp_path = pfp_path
             database.get_user(flask_login.current_user.id).pfp_path = pfp_path
@@ -36,6 +42,6 @@ def profile_page():
         pfp=flask_login.current_user.pfp_path,
     )
 
+
 def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS

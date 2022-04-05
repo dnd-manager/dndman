@@ -2,5 +2,6 @@
 .vscode
 .env
 .tests
+.mypy_cache
 /tests
 /database

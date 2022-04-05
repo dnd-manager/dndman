@@ -7,6 +7,7 @@ import colorama
 colorama.init()
 
 from .logger import logger
+
 logger.setLevel(logging.DEBUG)
 
 from dotenv import load_dotenv

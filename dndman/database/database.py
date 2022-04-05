@@ -31,7 +31,7 @@ class User(flask_login.UserMixin):
         self.id = str(uuid.uuid4())
         self.pfp_path = PFP_PATH + "unknown_user.svg"
 
-    # serialize user into a json object    
+    # serialize user into a json object
     def serialize(self) -> Dict[str, str]:
         return self.__dict__
 
@@ -71,7 +71,6 @@ class Database:
             return False
         return True
 
-    
     # get user with username
     # Exceptions: raises UserNotFoundException if not found
     def get_user_with_username(self, username: str) -> User:

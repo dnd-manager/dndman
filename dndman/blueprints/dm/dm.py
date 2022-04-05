@@ -21,6 +21,7 @@ def map_editor():
 def music_editor():
     return render_template("dm/music_editor.html")
 
+
 @dm.route("/campaign_preparer")
 @flask_login.login_required
 def campaign_preparer():
