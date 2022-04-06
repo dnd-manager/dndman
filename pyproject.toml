@@ -11,6 +11,7 @@ invoke = "^1.6.0"
 Flask-Login = "^0.5.0"
 python-dotenv = "^0.19.2"
 colorama = "^0.4.4"
+pythonnet = {git = "https://github.com/pythonnet/pythonnet"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
