@@ -10,8 +10,18 @@ document.querySelectorAll(".dice").forEach(dice => {
             label.textContent = getRand(max);
             await sleep(i*10);
         }
+        
+        httpGet("/discord_compat/send_message/Rolled " + label.textContent)
     });
 });
+
+function httpGet(theUrl)
+{
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+}
 
 function getRand(max) {
     return Math.floor(Math.random() * max) + 1;
