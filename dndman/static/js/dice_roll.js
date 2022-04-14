@@ -6,12 +6,15 @@ document.querySelectorAll(".dice").forEach(dice => {
 
     dice.getElementsByTagName("button")[0].addEventListener("click", async event => {
         event.preventDefault();
+        let num = 0;
+
         for (let i = 0; i < 20; i++) {
-            label.textContent = getRand(max);
+            num = getRand(max);
+            label.textContent = num;
             await sleep(i*10);
         }
         
-        httpGet("/discord_compat/send_message/Rolled " + label.textContent)
+        httpGet("/discord_compat/send_message/Rolled " + num)
     });
 });
 

@@ -1,11 +1,9 @@
-from logging.config import listen
-from flask import Flask, render_template, request, redirect, url_for
-import flask_login
+from flask import Flask, render_template, redirect, url_for
+from dndman.utils.event import Event
 
+import flask_login
 import logging
 import colorama
-
-from dndman.utils.event import Event
 
 colorama.init()
 from .logger import logger
@@ -56,6 +54,5 @@ def home():
     if flask_login.current_user.is_authenticated:
         return redirect(url_for("profile.profile_page"))
     return render_template("home.html")
-
 
 logger.info("Started.")
