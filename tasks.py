@@ -4,13 +4,13 @@ from invoke import task
 def debug(ctx):
     from dndman.utils.event import Event
     from dndman.app import app
-    from dndman.discord_integration.discord_integration import DiscordBotThread
+    # from dndman.discord_integration.discord_integration import DiscordBotThread
     
     comm_event = Event()
     
     # create seperate thread for bot
-    botThread = DiscordBotThread(comm_event=comm_event)
-    botThread.start()
+    # botThread = DiscordBotThread(comm_event=comm_event)
+    # botThread.start()
 
     # run flask on the main thread
     app.create_event(comm_event)
