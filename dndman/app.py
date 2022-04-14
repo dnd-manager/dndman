@@ -24,6 +24,8 @@ class DnDManFlask(Flask):
     def invoke_event(self, event_id: str, *argv):
         self.event.invoke(event_id, argv)
 
+    async def invoke_event_async(self, event_id: str, *argv):
+        await self.event.invoke_async(event_id, argv)
 
 logger.info("Starting...")
 

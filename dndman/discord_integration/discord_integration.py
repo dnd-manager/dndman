@@ -45,11 +45,11 @@ class DiscordBotThread(Thread):
         self.comm_event = comm_event
 
     def run(self):
-        async def send_message(message: str):
+        async def send_message(*argv):
             print("hallo 2")
             if output_channel is not None:
                 print ("hallo 3")
-                await output_channel.send(message)
+                await output_channel.send(argv)
 
         bot_app.create_event(self.comm_event)
         bot_app.add_event_listener("send_msg", send_message)
