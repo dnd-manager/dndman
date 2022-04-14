@@ -5,12 +5,14 @@ description = ""
 authors = ["RasterMk2 <70229194+RasterMk2@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
-Flask = "^2.0.3"
+python = "3.9"
+Flask = {extras = ["async"], version = "^2.1.1"}
 invoke = "^1.6.0"
 Flask-Login = "^0.5.0"
 python-dotenv = "^0.19.2"
 colorama = "^0.4.4"
+hikari = "^2.0.0-alpha.108"
+hikari-lightbulb = "^2.2.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

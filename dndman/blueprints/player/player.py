@@ -1,6 +1,5 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template
 import flask_login
-import random
 
 player = Blueprint(
     "player", __name__, static_folder="static", template_folder="templates"

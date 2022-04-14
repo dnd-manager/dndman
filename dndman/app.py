@@ -1,28 +1,39 @@
+from logging.config import listen
 from flask import Flask, render_template, request, redirect, url_for
 import flask_login
 
 import logging
 import colorama
 
+from dndman.utils.event import Event
+
 colorama.init()
-
 from .logger import logger
-
 logger.setLevel(logging.DEBUG)
 
 from dotenv import load_dotenv
 from os import getenv
 
-from .blueprints import player, dm, auth, profile
+from .blueprints import player, dm, auth, profile, discord_compat
 
-load_dotenv()
-app = Flask(__name__)
+class DnDManFlask(Flask):
+    def create_event(self, event: Event):
+        self.event = event
+
+    def add_event_listener(self, event_id: str, listener):
+        self.event.add_listener(event_id, listener)
+
+    def invoke_event(self, event_id: str, *argv):
+        self.event.invoke(event_id, argv)
+
 
 logger.info("Starting...")
 
+load_dotenv()
+app = DnDManFlask(__name__)
+app.config.update(SECRET_KEY=getenv("SECRET_KEY"))
 auth.init_login_manager(app)
 
-app.config.update(SECRET_KEY=getenv("SECRET_KEY"))
 
 logger.info('Loading "Player" blueprint...')
 app.register_blueprint(player.player, url_prefix="/player")
@@ -36,10 +47,8 @@ app.register_blueprint(auth.auth, url_prefix="/auth")
 logger.info('Loading "Profile" blueprint...')
 app.register_blueprint(profile.profile, url_prefix="/profile")
 
-
-@app.route("/protected")
-def protected():
-    return "Logged in as: " + flask_login.current_user.id
+logger.info('Loading "Discord Compatibility" blueprint...')
+app.register_blueprint(discord_compat.discord_compat, url_prefix="/discord_compat")
 
 
 @app.route("/")

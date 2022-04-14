@@ -1,0 +1,1 @@
+from .discord_compat import discord_compat
