@@ -1,4 +1,5 @@
 from threading import Thread
+import threading
 from typing import Any, Callable, Iterable, Mapping
 import lightbulb
 
@@ -34,10 +35,18 @@ async def set_channel(ctx: lightbulb.Context):
     if guild is not None:
         channel = guild.get_channel(ctx.options.channel)
         if isinstance(channel, GuildTextChannel):
+            print(threading.get_ident())
+            print(channel.__repr__())
             output_channel = channel
-            await ctx.respond("Setup successful!")
+            return await ctx.respond("Setup successful!")
         else:
-            await ctx.respond("Channel given is not a text chanenl!")
+            return await ctx.respond("Channel given is not a text chanenl!")
+
+async def send_message(*argv):
+    print(threading.get_ident())
+    print(output_channel.__repr__())
+    if output_channel is not None:
+        await output_channel.send(argv)
 
 class DiscordBotThread(Thread):
     def __init__(self, group: None = None, target: Callable[..., Any] | None = ..., name: str | None = ..., args: Iterable[Any] = ..., kwargs: Mapping[str, Any] | None = ..., *, daemon: bool | None = ..., comm_event: Event) -> None:
@@ -45,12 +54,6 @@ class DiscordBotThread(Thread):
         self.comm_event = comm_event
 
     def run(self):
-        async def send_message(*argv):
-            print("hallo 2")
-            if output_channel is not None:
-                print ("hallo 3")
-                await output_channel.send(argv)
-
         bot_app.create_event(self.comm_event)
         bot_app.add_event_listener("send_msg", send_message)
         bot_app.run()

@@ -1,3 +1,5 @@
+from threading import Thread
+from typing import Any, Callable, Iterable, Mapping
 from flask import Flask, render_template, redirect, url_for
 from dndman.utils.event import Event
 
@@ -58,3 +60,14 @@ def home():
     return render_template("home.html")
 
 logger.info("Started.")
+
+
+class FlaskWebThread(Thread):
+    def __init__(self, group: None = None, target: Callable[..., Any] | None = ..., name: str | None = ..., args: Iterable[Any] = ..., kwargs: Mapping[str, Any] | None = ..., *, daemon: bool | None = ..., comm_event: Event) -> None:
+        super().__init__(group, target, name, args, kwargs, daemon=daemon)
+        self.comm_event = comm_event
+
+    def run(self):
+        app.create_event(self.comm_event)
+        app.run("localhost", 8000)
+        return super().run()
